@@ -2,8 +2,7 @@
 #include "io.h"
 #include "cpu.h"
 
-/* support for the PIC (not APIC) */
-/* this thing is legacy and should be replaced as soon as possible */
+/* PIC Support*/
 
 void
 set_idt_entry(uint8_t vector, void *handler, uint8_t dpl)
@@ -82,8 +81,7 @@ set_vector_handlers()
 void
 interrupt_dispatch(struct cpu_state *ctx)
 {
-  int vector_num = ctx->eax ? 0 : 1;
-  if (vector_num <= 32) {
-    panic("%s\n", exception_names[vector_num]);
+  if (ctx->vector_number <= 32) {
+    panic("%s\n", exception_names[ctx->vector_number]);
   }
 }
