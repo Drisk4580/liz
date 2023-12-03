@@ -1,0 +1,5 @@
+-Wall
+-Werror
+-nostdlib
+-nostartfiles
+-m32
